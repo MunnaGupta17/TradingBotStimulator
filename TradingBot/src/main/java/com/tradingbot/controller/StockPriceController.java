@@ -1,6 +1,6 @@
 package com.tradingbot.controller;
 
-import com.tradingbot.model.StockPrice;
+import com.tradingbot.model.Stock;
 import com.tradingbot.service.StockPriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,8 @@ public class StockPriceController {
     private StockPriceService stockPriceService;
 
     @GetMapping("/stock-prices")
-    public ResponseEntity<List<StockPrice>> getStockPrices() {
-        List<StockPrice> stockPrices = stockPriceService.getStockPrices();
+    public ResponseEntity<List<Stock>> getStockPrices() {
+        List<Stock> stockPrices = stockPriceService.getStockPrices();
         return ResponseEntity.ok(stockPrices);
     }
 }
