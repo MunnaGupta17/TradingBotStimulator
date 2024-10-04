@@ -1,27 +1,26 @@
 package com.tradingbot.controller;
 
 import com.tradingbot.model.StockPrice;
+import com.tradingbot.service.StockPriceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class StockPriceController {
 
+    @Autowired
+    private StockPriceService stockPriceService;
+
     @GetMapping("/stock-prices")
     public ResponseEntity<List<StockPrice>> getStockPrices() {
-        List<StockPrice> stockPrices = Arrays.asList(
-                new StockPrice("AAPL", 150.0),
-                new StockPrice("GOOGL", 2800.0),
-                new StockPrice("AMZN", 3500.0)
-        );
-
-
+        List<StockPrice> stockPrices = stockPriceService.getStockPrices();
         return ResponseEntity.ok(stockPrices);
     }
 }
+
